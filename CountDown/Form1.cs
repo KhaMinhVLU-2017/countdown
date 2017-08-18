@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace CountDown
 {
     public partial class Form1 : Form
@@ -81,30 +82,7 @@ namespace CountDown
             fSecond = 20 + sizeCount * 10;
             fLabel5 = 20 + sizeCount * 10;
             fLabel3 = 20 + sizeCount * 10;
-            if (sizeCount <=4)
-            {
-                checkZoom = true;
-                lbl_minute.Font = new Font("Arial", fMinute);
-                this.lbl_minute.Location = new System.Drawing.Point(xMinute, 144);//center
-                                                                                              //hour
-                lbl_hour.Font = new Font("Arial", fHour);
-                this.lbl_hour.Location = new System.Drawing.Point(xHour, 144);//left
-
-                //second
-                lbl_Second.Font = new Font("Arial", fSecond);
-                this.lbl_Second.Location = new System.Drawing.Point(xSecond, 144);//right
-                //label5
-                this.label5.Location = new System.Drawing.Point(xLabel5, 144);//left
-                label5.Font = new Font("Arial", fLabel5);
-                //label3
-                label3.Font = new Font("Arial", fLabel3);
-                this.label3.Location = new System.Drawing.Point(xLabel3, 144);//phai
-            }
-            else
-            {
-                button1.Enabled = false;
-                button2.Enabled = true;
-            }
+      
         }
         string screenh = "";
 
@@ -117,14 +95,14 @@ namespace CountDown
                 txt_Hour.Text = screenh;
             }
         }
-
+        int sum = 0;
         private void btn_Start_Click(object sender, EventArgs e)
         {
 
             if (txt_Hour.Text == "")
             {
                 h = 0;
-                txt_Hour.Text = h.ToString();
+                txt_Hour.Text = h.ToString().Trim();
             }
             else
             {
@@ -140,7 +118,7 @@ namespace CountDown
             if (txt_Minute.Text == "")
             {
                 m = 0;
-                txt_Minute.Text = m.ToString();
+                txt_Minute.Text = m.ToString().Trim();
             }
             else
             {
@@ -162,19 +140,13 @@ namespace CountDown
                 if (m > 60)
                 {
                     h = m / 60 + h;
-                    m = m % 60;
-                }
+                    m = m % 60;                }
                 count = h.ToString().Count();
                 countMinute = m.ToString().Count();
-                if (checkZoom == false)
-                {
-                    lbl_hour.Location = new System.Drawing.Point(145 - (count - 1) * 30, 144);
-                    this.lbl_minute.Location = new System.Drawing.Point(230 - (countMinute - 1) * 12, 144);
-                }
+                sum = h * 60 * 60 + m * 60;
                 progressBar1.Maximum = h*60*60+m*60;
                 timer1.Start();
-                lbl_hour.Text = h.ToString();
-                lbl_minute.Text = m.ToString();
+   
                 enableMeo(false);
                 btn_Pause.Enabled = true;
                 btn_Stop.Enabled = true;
@@ -208,9 +180,7 @@ namespace CountDown
             timer1.Interval = 1000;// 1 giay ak
             enableMeo(true);
             h = 0;m = 0;s = 0;
-            lbl_hour.Text = "0";
-            lbl_minute.Text = "0";
-            lbl_Second.Text = "0";
+        
             btn_Pause.Enabled = false;
             btn_Stop.Enabled = false;
             checkPause = false;
@@ -221,43 +191,7 @@ namespace CountDown
         private void button2_Click(object sender, EventArgs e)//zomm oiut
         {
        
-            sizeLot++;// dem de xoa
-            sizeCount--;
-            // minute
-            if (sizeLot <=4)
-            {
-                checkZoom = true;
-                lbl_minute.Font = new Font("Arial", fMinute - sizeLot * 10);
-                this.lbl_minute.Location = new System.Drawing.Point(xMinute + sizeLot * 4, 144);//center
-                //hour
-                 lbl_hour.Font = new Font("Arial", fHour - sizeLot * 10);
-                 this.lbl_hour.Location = new System.Drawing.Point(xHour + sizeLot * 30 + (count - 2) * 35, 144);//left
-              
-                //second
-                lbl_Second.Font = new Font("Arial", fSecond - sizeLot * 10);
-                this.lbl_Second.Location = new System.Drawing.Point(xSecond - sizeLot * 10, 144);//right
-                  //label5
-                this.label5.Location = new System.Drawing.Point(xLabel5 + sizeLot * 10 + countMinute , 144);//left
-                label5.Font = new Font("Arial", fLabel5 - sizeLot * 10);
-                //label3
-                label3.Font = new Font("Arial", fLabel3 - sizeLot * 10);
-                this.label3.Location = new System.Drawing.Point(xLabel3 - sizeLot * 10, 144);//phai
-            }
-            //xMinute = 230 - sizeCount * 4;
-            //xHour = 145 - sizeCount * 25 - (count - 1) * 20;
-            //xSecond = 315 + sizeCount * 10;
-            //xLabel3 = 278 + sizeCount * 10;
-            //xLabel5 = 193 - sizeCount * 10 + countMinute * 5;
-            //fMinute = 20 + sizeCount * 10;
-            //fHour = 20 + sizeCount * 10;
-            //fSecond = 20 + sizeCount * 10;
-            //fLabel5 = 20 + sizeCount * 10;
-            //fLabel3 = 20 + sizeCount * 10;
-            else
-            {
-                button2.Enabled = false;
-                button1.Enabled = true;
-            }
+          
         }
 
         private void txt_Minute_KeyDown(object sender, KeyEventArgs e)
@@ -266,6 +200,14 @@ namespace CountDown
             {
 
             }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //StartFrom meo = new StartFrom();// chua toi uu close
+            //meo.CloseMeo();
+            // Process process = Process.Start("CountDown.exe");
+         
         }
 
         private void timer1_MEO(object sender, EventArgs e)
@@ -286,19 +228,29 @@ namespace CountDown
             {
                 timer1.Stop();
             }
-            if (h == 0 && m == 59)
-            {
-                this.lbl_minute.Location = new System.Drawing.Point(230 - 10, 144);
-            }
+           
 
             string hh = Convert.ToString(h);
             string mm = Convert.ToString(m);
             string ss = Convert.ToString(s);
-            lbl_hour.Text = hh;
-            lbl_minute.Text = mm;
-            lbl_Second.Text = ss;
             progressBar1.Increment(1);
-           
+            txt_screen.Text = string.Format("{0}:{1}:{2}", hh, mm, ss);
+
+            if (progressBar1.Value <= sum / 3)
+            {
+                progressBar1.ForeColor = Color.Green;
+            }
+
+            if (progressBar1.Value <= sum*2/3&& progressBar1.Value>=sum/3)
+            {
+                progressBar1.ForeColor = Color.Blue;
+            }
+            if (progressBar1.Value <=sum && progressBar1.Value>=sum*2/3)
+            {
+                progressBar1.ForeColor = Color.Red;
+            }
+         
+
         }
         private void enableMeo(bool meo)
         {

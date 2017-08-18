@@ -41,13 +41,10 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.lbl_minute = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lbl_hour = new System.Windows.Forms.Label();
-            this.lbl_Second = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txt_screen = new System.Windows.Forms.TextBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -58,6 +55,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label1.Location = new System.Drawing.Point(5, 3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(81, 31);
@@ -79,6 +77,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label2.Location = new System.Drawing.Point(6, 4);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(103, 31);
@@ -98,6 +97,9 @@
             // 
             // btn_Start
             // 
+            this.btn_Start.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Start.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btn_Start.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btn_Start.Location = new System.Drawing.Point(4, 22);
             this.btn_Start.Name = "btn_Start";
             this.btn_Start.Size = new System.Drawing.Size(87, 41);
@@ -108,6 +110,8 @@
             // 
             // btn_Pause
             // 
+            this.btn_Pause.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Pause.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btn_Pause.Location = new System.Drawing.Point(100, 22);
             this.btn_Pause.Name = "btn_Pause";
             this.btn_Pause.Size = new System.Drawing.Size(87, 41);
@@ -118,6 +122,8 @@
             // 
             // btn_Stop
             // 
+            this.btn_Stop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Stop.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btn_Stop.Location = new System.Drawing.Point(193, 22);
             this.btn_Stop.Name = "btn_Stop";
             this.btn_Stop.Size = new System.Drawing.Size(87, 41);
@@ -187,92 +193,62 @@
             this.panel4.Controls.Add(this.txt_Minute);
             this.panel4.Location = new System.Drawing.Point(250, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(246, 41);
+            this.panel4.Size = new System.Drawing.Size(254, 41);
             this.panel4.TabIndex = 13;
-            // 
-            // lbl_minute
-            // 
-            this.lbl_minute.AutoSize = true;
-            this.lbl_minute.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lbl_minute.Location = new System.Drawing.Point(230, 144);
-            this.lbl_minute.Margin = new System.Windows.Forms.Padding(0);
-            this.lbl_minute.Name = "lbl_minute";
-            this.lbl_minute.Size = new System.Drawing.Size(42, 46);
-            this.lbl_minute.TabIndex = 7;
-            this.lbl_minute.Text = "0";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label5.Location = new System.Drawing.Point(193, 144);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(31, 46);
-            this.label5.TabIndex = 6;
-            this.label5.Text = ":";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label3.Location = new System.Drawing.Point(278, 144);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(31, 46);
-            this.label3.TabIndex = 11;
-            this.label3.Text = ":";
-            // 
-            // lbl_hour
-            // 
-            this.lbl_hour.AutoSize = true;
-            this.lbl_hour.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lbl_hour.Location = new System.Drawing.Point(145, 144);
-            this.lbl_hour.Name = "lbl_hour";
-            this.lbl_hour.Size = new System.Drawing.Size(42, 46);
-            this.lbl_hour.TabIndex = 5;
-            this.lbl_hour.Text = "0";
-            // 
-            // lbl_Second
-            // 
-            this.lbl_Second.AutoSize = true;
-            this.lbl_Second.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lbl_Second.Location = new System.Drawing.Point(315, 144);
-            this.lbl_Second.Name = "lbl_Second";
-            this.lbl_Second.Size = new System.Drawing.Size(42, 46);
-            this.lbl_Second.TabIndex = 12;
-            this.lbl_Second.Text = "0";
             // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel1.Controls.Add(this.txt_screen);
             this.panel1.Controls.Add(this.progressBar1);
-            this.panel1.Controls.Add(this.lbl_hour);
-            this.panel1.Controls.Add(this.lbl_Second);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.lbl_minute);
-            this.panel1.Location = new System.Drawing.Point(12, 49);
+            this.panel1.Location = new System.Drawing.Point(12, 44);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(492, 343);
+            this.panel1.Size = new System.Drawing.Size(492, 348);
             this.panel1.TabIndex = 13;
+            // 
+            // txt_screen
+            // 
+            this.txt_screen.BackColor = System.Drawing.Color.Black;
+            this.txt_screen.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_screen.Cursor = System.Windows.Forms.Cursors.Default;
+            this.txt_screen.Font = new System.Drawing.Font("Microsoft Sans Serif", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txt_screen.ForeColor = System.Drawing.Color.White;
+            this.txt_screen.Location = new System.Drawing.Point(3, 95);
+            this.txt_screen.Multiline = true;
+            this.txt_screen.Name = "txt_screen";
+            this.txt_screen.ReadOnly = true;
+            this.txt_screen.Size = new System.Drawing.Size(486, 93);
+            this.txt_screen.TabIndex = 14;
+            this.txt_screen.Text = "00:00:00";
+            this.txt_screen.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(0, 298);
+            this.progressBar1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.progressBar1.ForeColor = System.Drawing.Color.Lime;
+            this.progressBar1.Location = new System.Drawing.Point(4, 298);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(492, 45);
+            this.progressBar1.Size = new System.Drawing.Size(485, 45);
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar1.TabIndex = 13;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(516, 492);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CountDown";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -301,13 +277,10 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label lbl_minute;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lbl_hour;
-        private System.Windows.Forms.Label lbl_Second;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox txt_screen;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.DirectoryServices.DirectoryEntry directoryEntry1;
     }
 }
 
