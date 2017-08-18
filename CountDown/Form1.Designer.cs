@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label1 = new System.Windows.Forms.Label();
             this.txt_Hour = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -217,7 +218,6 @@
             this.txt_screen.Location = new System.Drawing.Point(3, 95);
             this.txt_screen.Multiline = true;
             this.txt_screen.Name = "txt_screen";
-            this.txt_screen.ReadOnly = true;
             this.txt_screen.Size = new System.Drawing.Size(486, 93);
             this.txt_screen.TabIndex = 14;
             this.txt_screen.Text = "00:00:00";
@@ -245,6 +245,7 @@
             this.Controls.Add(this.panel1);
             this.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CountDown";

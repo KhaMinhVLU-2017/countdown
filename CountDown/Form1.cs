@@ -21,8 +21,7 @@ namespace CountDown
             timer1.Interval = 1000;// 1 giay ak
             btn_Pause.Enabled = false;
             btn_Stop.Enabled = false;
-            button1.Enabled = true ;
-            button2.Enabled = false;
+     
         }
         int h, m, s;
         Timer timer1;
@@ -52,47 +51,67 @@ namespace CountDown
         }
         int count = 0;
         int countMinute = 0;
-        int sizeCount = 0;
-        float currentSize;
-        int xMinute = 0;
-        int xHour = 0;
-        int xLabel5=0;
-        int xLabel3=0;
-        int xSecond = 0;
-        int fMinute = 0;
-        int fHour = 0;
-        int fSecond = 0;
-        int fLabel5 = 0;
-        int fLabel3 = 0;
+        int countZoom = 2;
+        int countZoomIn = 1;
+
+        int sizeFont = 60;
+        int sizeHeight = 93;
+
+  
+    
         private void button1_Click(object sender, EventArgs e)//zoom in
         {
-            sizeCount++;
-            if (sizeLot != 0)
+            if (countZoom >= 2 && countZoom < 4)
             {
-                sizeLot--;
+                sizeFont = sizeFont + countZoomIn * 10;
+                sizeHeight = sizeHeight + countZoomIn * 10;
+                txt_screen.Font = new Font(txt_screen.Font.FontFamily, sizeFont);
+                txt_screen.Height = sizeHeight ;
+                countZoom++;
+                countZoomIn++;
             }
-            // minute
-            xMinute = 230 - sizeCount * 4;
-            xHour = 145 - sizeCount * 25 - (count - 1) * 20;
-            xSecond = 315 + sizeCount * 10;
-            xLabel3 = 278 + sizeCount * 10;
-            xLabel5 = 193 - sizeCount * 10 + countMinute * 5;
-            fMinute = 20 + sizeCount * 10;
-            fHour = 20 + sizeCount * 10;
-            fSecond = 20 + sizeCount * 10;
-            fLabel5 = 20 + sizeCount * 10;
-            fLabel3 = 20 + sizeCount * 10;
-      
-        }
-        string screenh = "";
+          
+            if (countZoom == 4)
+            {
+            
+                button1.Enabled = false;
+                button2.Enabled = true;
+            }
+         
 
+        }
+        int countZoomOut = 1;
+        private void button2_Click(object sender, EventArgs e)//zomm oiut
+        {
+            if (countZoom >= 2 && countZoom <=4 )
+            {
+                
+                sizeFont = sizeFont - countZoomOut * 10;
+                sizeHeight = sizeHeight - countZoomOut * 10;
+                txt_screen.Font = new Font(txt_screen.Font.FontFamily, sizeFont );
+                txt_screen.Height = sizeHeight;
+                countZoom--;
+                countZoomOut++;
+                countZoomIn--;
+
+
+            }
+            if (countZoom == 2 )
+            {
+                countZoomOut = 1;
+                button2.Enabled = false;
+                button1.Enabled = true;
+            }
+            
+
+        }
         private void txt_Hour_KeyDown(object sender, KeyEventArgs e)
         {
-            screenh = txt_Hour.Text;
+
             if (e.KeyCode == Keys.Enter)
             {
-                btn_Start_Click(null, null);// phim enter
-                txt_Hour.Text = screenh;
+                e.SuppressKeyPress = true;
+                btn_Start_Click(null, null);
             }
         }
         int sum = 0;
@@ -140,13 +159,14 @@ namespace CountDown
                 if (m > 60)
                 {
                     h = m / 60 + h;
-                    m = m % 60;                }
+                    m = m % 60;
+                }
                 count = h.ToString().Count();
                 countMinute = m.ToString().Count();
                 sum = h * 60 * 60 + m * 60;
-                progressBar1.Maximum = h*60*60+m*60;
+                progressBar1.Maximum = h * 60 * 60 + m * 60;
                 timer1.Start();
-   
+
                 enableMeo(false);
                 btn_Pause.Enabled = true;
                 btn_Stop.Enabled = true;
@@ -162,7 +182,7 @@ namespace CountDown
                 timer1.Stop();
                 checkPause = true;
                 btn_Pause.Text = "Resume";
-             
+
             }
             else
             {
@@ -179,35 +199,26 @@ namespace CountDown
             timer1.Tick += new EventHandler(timer1_MEO);
             timer1.Interval = 1000;// 1 giay ak
             enableMeo(true);
-            h = 0;m = 0;s = 0;
-        
+            h = 0; m = 0; s = 0;
+
             btn_Pause.Enabled = false;
             btn_Stop.Enabled = false;
             checkPause = false;
             btn_Pause.Text = "Pause";
-            progressBar1.Value=0;
+            progressBar1.Value = 0;
         }
-        int sizeLot = 0;
-        private void button2_Click(object sender, EventArgs e)//zomm oiut
-        {
-       
-          
-        }
-
         private void txt_Minute_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-
+                e.SuppressKeyPress = true;
+                btn_Start_Click(null, null);
             }
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //StartFrom meo = new StartFrom();// chua toi uu close
-            //meo.CloseMeo();
-            // Process process = Process.Start("CountDown.exe");
-         
+            Application.Exit();
         }
 
         private void timer1_MEO(object sender, EventArgs e)
@@ -228,7 +239,7 @@ namespace CountDown
             {
                 timer1.Stop();
             }
-           
+
 
             string hh = Convert.ToString(h);
             string mm = Convert.ToString(m);
@@ -241,15 +252,15 @@ namespace CountDown
                 progressBar1.ForeColor = Color.Green;
             }
 
-            if (progressBar1.Value <= sum*2/3&& progressBar1.Value>=sum/3)
+            if (progressBar1.Value <= sum * 2 / 3 && progressBar1.Value >= sum / 3)
             {
                 progressBar1.ForeColor = Color.Blue;
             }
-            if (progressBar1.Value <=sum && progressBar1.Value>=sum*2/3)
+            if (progressBar1.Value <= sum && progressBar1.Value >= sum * 2 / 3)
             {
                 progressBar1.ForeColor = Color.Red;
             }
-         
+
 
         }
         private void enableMeo(bool meo)
@@ -258,6 +269,6 @@ namespace CountDown
             txt_Hour.Enabled = meo;
             txt_Minute.Enabled = meo;
         }
-      
+
     }
 }

@@ -30,9 +30,6 @@ namespace CountDown
                 this.Hide();
             }
         }
-        public void CloseMeo()
-        {
-            this.Close();
-        }
+     
     }
 }
