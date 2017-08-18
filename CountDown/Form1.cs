@@ -21,6 +21,7 @@ namespace CountDown
             timer1.Interval = 1000;// 1 giay ak
             btn_Pause.Enabled = false;
             btn_Stop.Enabled = false;
+            button2.Enabled = false;
      
         }
         int h, m, s;
